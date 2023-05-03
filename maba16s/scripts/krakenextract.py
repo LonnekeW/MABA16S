@@ -4,8 +4,8 @@ import sys
 
 
 def extract_reads(speciesID, name, krakenfile, genusID, fastqin, outdir):
-    os.system(f'mkdir -p {outdir}')
-    os.system(f'extract_kraken_reads.py -k {krakenfile} -o {outdir + "/" + name + ".fastq.gz"} -s {fastqin} -t {genusID}')
+    os.system('mkdir -p {}'.format(outdir))
+    os.system('extract_kraken_reads.py -k {} -o {} -s {} -t {}'.format(krakenfile, os.path.join(outdir, name + ".fastq.gz"), fastqin, genusID))
 
 
 def read_krakenreport(file, krakenfile, fastqin, outdir):
