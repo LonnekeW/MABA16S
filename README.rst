@@ -23,6 +23,7 @@ MABA16S
 Oxford nanopore 16S for clinical samples
 
 
+* This fork only runs in conda flexible mode. To change to flexible mode, use `nano ~/.condarc` and set `channel_priority` to `flexible`
 * Free software: MIT license
 * Documentation: https://maba16s.readthedocs.io.
 
