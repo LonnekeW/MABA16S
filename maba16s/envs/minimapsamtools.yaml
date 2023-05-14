@@ -2,8 +2,12 @@ name: kraken2
 channels:
   - bioconda
   - anaconda
+  - conda-forge
 dependencies:
-  - conda-forge::ncurses
-  - python=3.6
+  - conda-forge::ncurses=6.1
+  - python
   - minimap2=2.24
-  - samtools=1.16.1
+  - samtools
+  - libedit=3.1.20191231
+  - krb5=1.19.3
+  - libcurl=7.83.0
