@@ -86,7 +86,7 @@ rule kraken2:
     conda:
         "envs/kraken2.yaml"
     log:
-        OUTDIR + "log/{sample}/kraken2_main.txt"
+        os.path.join(OUTDIR, "log", "{sample}", "kraken2_main.txt")
     shell:
         "kraken2 --db {input.db} -t {threads} "
         "--report {output.report} {input.reads} > {output.out} "
@@ -100,7 +100,7 @@ rule strip_genera:
     params:
         reads_cutoff_genus = 50
     log: 
-        OUTDIR + "log/{sample}/stripgenera.txt"
+        os.path.join(OUTDIR, "log", "{sample}", "stripgenera.txt")
     shell:
         '''awk '$4 == "G" {{print $0}}' {input} | awk '$2 > {params.reads_cutoff_genus} {{print $0}}' > {output} 2> {log}'''
 
@@ -117,7 +117,7 @@ rule genus_read_extract:
     conda:
         "envs/kraken2.yaml"
     log:
-        OUTDIR + "log/{sample}/genusreadextract.log"
+        os.path.join(OUTDIR, "log", "{sample}", "genusreadextract.log")
     shell:
         '''
         python scripts/krakenextract.py {input.report} {input.krakenfile} {input.fastq} {output}
@@ -134,7 +134,7 @@ rule map_genera:
     conda:
         "envs/minimapsamtools.yaml"
     log:
-        OUTDIR + "log/{sample}/map_genera.log"
+        os.path.join(OUTDIR, "log", "{sample}", "map_genera.log")
     shell:
         "python scripts/aligner.py {input.readdir} {input.ref} {output} 2> {log}"
 
@@ -150,7 +150,7 @@ rule blast_consensus_genera:
     conda:
         "envs/blast.yaml"
     log:
-        OUTDIR + 'log/{sample}/blast_consensus_genera.log'
+        os.path.join(OUTDIR, "log", "{sample}", "blast_consensus_genera.log")
     shell:
         "python scripts/blast_consensus.py {input.fastas}/fastas/ {threads} {input.db} {output} 2> {log} "
 
@@ -165,6 +165,6 @@ rule generate_reports:
     conda:
         "envs/kraken2.yaml" # this env has pandas
     log:
-        OUTDIR + "log/{sample}/report.log"
+        os.path.join(OUTDIR, "log", "{sample}", "report.log"
     shell:
         "python scripts/generate_reports.py {input.blast} {output} {input.readcount} 2> {log}"
