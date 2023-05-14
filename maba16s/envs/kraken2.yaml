@@ -7,3 +7,7 @@ dependencies:
   - krakentools=1.2
   - pandas
   - xlwt
+  - python
+  - libedit=3.1.20191231
+  - krb5=1.19.3
+  - libcurl=7.83.0
