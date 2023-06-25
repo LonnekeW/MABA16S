@@ -24,6 +24,7 @@ Oxford nanopore 16S for clinical samples
 
 
 * This fork only runs in conda flexible mode. To change to flexible mode, use `nano ~/.condarc` and set `channel_priority` to `flexible`
+* Input: zipped fasta files in seperate folders. Make sure not to end the input path directory with a `/` as this will block the pipeline.
 * Free software: MIT license
 * Documentation: https://maba16s.readthedocs.io.
 
